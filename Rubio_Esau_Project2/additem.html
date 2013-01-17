@@ -12,6 +12,8 @@ Term: 0113
 		<meta name="keyword" content="Work, Organizer, Simple, add, item" />
 		<meta name="robots" content="noindex, nofollow" />
 		<meta name="viewport" content="user-scalable=no, width=device-width">
+		
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
 		<!-- Page Title -->
 		<title> Add Work! </title>
 	</head>
@@ -21,40 +23,22 @@ Term: 0113
 				<h1>Add Work</h1>
 			</hgroup>
 		</header>
-		<form action="#" method="post">
+		<form action="#" method="post" id="mainform">
 		<fieldset>	
 			<legend>Work Information</legend>
 			<ul>
 				<li><label for="location">Where is the Work located?</label>
 					<br><input type="text" name="location" id="location" /></li>
-				<li>
-					<label for="worktype">What Type of Work is it?</label>
-					<br><select id="worktype">
-						<optgroup label="Construction">
-							<option value="Roofing">Roofing</option>
-							<option value="Concrete">Concrete</option>
-							<option value="Carpentry">Carpentry</option>
-							<option value="Construction:Electric">Electric</option>
-							<option value="Construction:Plumbing">Plumbing</option>
-							<option value="Excavation">Excavation</option>
-						</optgroup>
-						<optgroup label="Maintenance">
-							<option value="HouseKeeping">House Keeping</option>
-							<option value="Painting">Painting</option>
-							<option value="Maintenance:Electric">Electric</option>
-							<option value="Maintenance:Plumbing">Plumbing</option>
-						</optgroup>
-					</select></br>
-				</li>
+				<li id="worktype"><label for="worktype">What Type of Work is it?</label><br></li>
 			</ul>
 		</fieldset>
 		<fieldset>
 			<legend>Job information</legend>
 			<ul>
 				<li> What is the Priority?
-						<br><input type="radio" value="High" id="high" name="priority" /><label for="high">High</label>
-						<br><input type="radio" checked value="Medium" id="medium" name="priority" /><label for="medium">Medium</label>
-						<br><input type="radio" value="Low" id="low" name="priority" /><label for="low">Low</label>
+						<br><input type="radio" value="High" id="high" name="priorit" /><label for="high">High</label>
+						<br><input type="radio" checked value="Medium" id="medium" name="priorit" /><label for="medium">Medium</label>
+						<br><input type="radio" value="Low" id="low" name="priorit" /><label for="low">Low</label>
 				</li>
 				<li><label for="people">How many Worker(s) to send?</label>
 					<br><input type="range" id="people" min="1" max="5" name="workersToSend" />
