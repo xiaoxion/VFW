@@ -16,7 +16,7 @@ window.addEventListener( "DOMContentLoaded" , function() {
         var radio = document.forms[0].priorit;
         console.log(radio);
         console.log(radio.checked);
-        for (var i=0 rl=radio.length; i<rl ; i++) {
+        for (var i=0 , rl=radio.length; i<rl ; i++) {
             if (radio[i].checked) {
                 priority = radio[i].value
             };
@@ -26,31 +26,74 @@ window.addEventListener( "DOMContentLoaded" , function() {
         getPriority ();
         var keyGen = Math.floor(Math.random()*1000000);
         var	userInput = {};
-            userInput.location = ["Location" , ids("location").value];
-            userInput.worktype = ["Work Type" , ids("typeOfWork").value];
-            userInput.priority = ["Priority" , priority ];
-            userInput.people   = ["Workers Sent" , ids("people").value];
-            userInput.finishby = ["Finish By" , ids("finishby").value];
-            userInput.notes    = ["Notes" , ids("notes").value];
+            userInput.location = ["Location:" , ids("location").value];
+            userInput.worktype = ["Work Type:" , ids("typeOfWork").value];
+            userInput.priority = ["Priority:" , priority ];
+            userInput.people   = ["Workers Sent:" , ids("people").value];
+            userInput.finishby = ["Finish By:" , ids("finishby").value];
+            userInput.notes    = ["Notes:" , ids("notes").value];
             localStorage.setItem(keyGen , JSON.stringify(userInput));
             alert("Job Saved!");
-            alert(localStorage.length)
             };
 	
     // Display Data
     function getData() {
+        switchControl("on")
         var makeDiv = document.createElement('div');
             makeList = document.createElement('ul');
-        makeDiv.setAttribute('id', 'input');
+        makeDiv.setAttribute('id', 'list');
         makeDiv.appendChild(makeList);
+        document.body.appendChild(makeDiv);
+        ids('list').style.display = 'block';
         for(var i=0, l=localStorage.length; i<l; i++) {
             var makeLi = document.createElement('li');
-                key = localStorage.key[i]
+                key = localStorage.key(i);
                 value = localStorage.getItem(key);
-                parsed = JSON.parse(value)
+                parsed = JSON.parse(value);
+                subUl = document.createElement('ul');
+                makeBreak = document.createElement('br');
+            makeList.appendChild(makeLi)
+            makeLi.appendChild(subUl)
+            for(var n in parsed) {
+                var subLi = document.createElement('li');
+                    text = parsed[n][0] + " " + parsed[n][1];
+                subUl.appendChild(subLi);
+                subLi.innerHTML = text;
+            };
+        makeLi.appendChild(makeBreak);
+        };
+    };
+    
+    function switchControl(n) {
+        switch(n) {
+            case "on":
+                ids('mainform').style.display = 'none';
+                ids('clear').style.display = "inline";
+                ids('display').style.display = 'none';
+                ids('reload').style.display = 'inline';
+                break;
+            case "off":
+                ids('mainform').style.display = 'block';
+                ids('clear').style.display = "inline";
+                ids('display').style.display = 'inline';
+                ids('reload').style.display = 'none';
+                ids('list').style.display = 'none';
+                break;
+            default:
+                return false
         };
     };    
     // Clear Data
+    function clearData() {
+        if (localStorage.length===0) {
+            alert("No Jobs to clear!");
+        } else {
+            localStorage.clear();
+            confirm("Are you sure you want to clear all Jobs??");
+            alert("Jobs Cleared!");
+            return false;
+        };
+    };
 
     // Dynamic Options
     function addCat() {
@@ -78,6 +121,6 @@ window.addEventListener( "DOMContentLoaded" , function() {
         clear = ids("clear");
         submit = ids("submit");
     display.addEventListener( "click" , getData );
-    //clear.addEventListener( "click" , clearData );
+    clear.addEventListener( "click" , clearData );
     submit.addEventListener( "click" , storeData );
 });
