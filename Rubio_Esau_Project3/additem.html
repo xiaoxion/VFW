@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-Project 2: WOrkganzier
+Project 3: WOrkganzier
 Author: Esau Rubio
 Term: 0113
 -->
@@ -29,22 +29,23 @@ Term: 0113
 			<a href="#" id="display" >Display Jobs</a>
 			<a href="additem.html" style="display:none" id="reload">Add Jobs</a>
 		</nav>
+		<ul id="error"></ul>
 		<form action="#" method="post" id="mainform">
-		<fieldset>	
+		<fieldset>
 			<legend>Work Information</legend>
 			<ul>
 				<li><label for="location">Where is the Work located?</label>
 					<br><input type="text" name="location" id="location" /></li>
-				<li id="worktype"><label for="worktype">What Type of Work is it?</label><br></li>
+				<li id="typeOfWork"><label for="typeOfWork">What Type of Work is it?</label><br></li>
 			</ul>
 		</fieldset>
 		<fieldset>
 			<legend>Job information</legend>
 			<ul>
 				<li> What is the Priority?
-						<br><input type="radio" value="High" id="high" name="priorit" /><label for="high">High</label>
-						<br><input type="radio" checked value="Medium" id="medium" name="priorit" /><label for="medium">Medium</label>
-						<br><input type="radio" value="Low" id="low" name="priorit" /><label for="low">Low</label>
+						<br><input type="radio" value="High" id="high" name="priority" /><label for="high">High</label>
+						<br><input type="radio" checked value="Medium" id="medium" name="priority" /><label for="medium">Medium</label>
+						<br><input type="radio" value="Low" id="low" name="priority" /><label for="low">Low</label>
 				</li>
 				<li><label for="people">How many Worker(s) to send?</label>
 					<br><input type="range" id="people" min="1" max="5" name="workersToSend" />
