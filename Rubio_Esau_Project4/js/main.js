@@ -9,7 +9,7 @@ window.addEventListener( "DOMContentLoaded" , function() {
     function ids(x) {
         var element = document.getElementById(x);
         return element;
-    };
+    }
     
     // Save Data
     function getPriority() {
@@ -19,15 +19,15 @@ window.addEventListener( "DOMContentLoaded" , function() {
         for (var i=0 , rl=radio.length; i<rl ; i++) {
             if (radio[i].checked) {
                 priority = radio[i].value
-            };
-        };
-    };
+            }
+        }
+    }
     function storeData(key) {
         if (!key) {
             var keyGen = Math.floor(Math.random()*1000000);
         } else {
             var keyGen = key;
-        };
+        }
         getPriority ();
         var	userInput = {};
             userInput.location = ["Location:" , ids("location").value];
@@ -38,35 +38,60 @@ window.addEventListener( "DOMContentLoaded" , function() {
             userInput.notes    = ["Notes:" , ids("notes").value];
             localStorage.setItem(keyGen , JSON.stringify(userInput));
             alert("Job Saved!");
-            };
+            }
 	
     // Display Data
     function getData() {
-        switchControl("on")
-        var makeDiv = document.createElement('div');
-        makeDiv.setAttribute('id', 'list');
-        document.body.appendChild(makeDiv);
-        ids('list').style.display = 'block';
-        for(var i=0, l=localStorage.length; i<l; i++) {
-            var makeList = document.createElement('ul');
-                makeLink = document.createElement('li'); 
-                key = localStorage.key(i);
-                value = localStorage.getItem(key);
-                parsed = JSON.parse(value);
-                makeBreak = document.createElement('br');
-            for(var n in parsed) {
-                var moreLi = document.createElement('li');
-                    text = parsed[n][0] + " " + parsed[n][1];
-                makeList.appendChild(moreLi);
-                moreLi.innerHTML = text;
-            };
-            makeDiv.appendChild(makeList);
-            makeList.appendChild(makeLink);
-            makeList.appendChild(makeBreak);
-            editDeleteLinks(localStorage.key(i) , makeLink);
-        };
-    };
-    
+        if (localStorage.length > 0 ) {
+            switchControl("on");
+            var makeDiv = document.createElement('div');
+            makeDiv.setAttribute('id', 'list');
+            document.body.appendChild(makeDiv);
+            ids('list').style.display = 'block';
+            for(var i=0, l=localStorage.length; i<l; i++) {
+                var makeList = document.createElement('ul');
+                    makeLink = document.createElement('li');
+                    key = localStorage.key(i);
+                    value = localStorage.getItem(key);
+                    parsed = JSON.parse(value);
+                    makeBreak = document.createElement('br');
+                imageGen(parsed.worktype[1] , makeList);
+                for(var n in parsed) {
+                    var moreLi = document.createElement('li');
+                        text = parsed[n][0] + " " + parsed[n][1];
+                    makeList.appendChild(moreLi);
+                    moreLi.innerHTML = text;
+                }
+                makeDiv.appendChild(makeList);
+                makeList.appendChild(makeLink);
+                makeList.appendChild(makeBreak);
+                editDeleteLinks(localStorage.key(i) , makeLink);
+            }
+        } else {
+            alert("No Data to display! Default data Added.");
+            insertData();
+        }
+    }
+
+    // Access Image and Display
+    function imageGen( parsedWork , makeList) {
+        var imageLi = document.createElement('li'),
+            imageTag = document.createElement('img'),
+            workName = parsedWork,
+            source = imageTag.setAttribute('src', 'img/'+ workName +'.png');
+        makeList.appendChild(imageLi);
+
+    }
+
+    // Add generic Data
+    function insertData() {
+        for(var n in json) {
+            var keyGen = Math.floor(Math.random()*1000000);
+            localStorage.setItem(keyGen , JSON.stringify(json[n]));
+        }
+        getData();
+    }
+
     // Create Edit and Delete Links
     function editDeleteLinks(key , makeLink) {
         var edit = document.createElement('a');
@@ -84,13 +109,13 @@ window.addEventListener( "DOMContentLoaded" , function() {
         del.addEventListener( 'click' , deletor);
         del.innerHTML = delText;
         makeLink.appendChild(del);
-    };
+    }
     
-    // Edit a choosen Job
+    // Edit a chosen Job
     function editor() {
         var getInput = localStorage.getItem(this.key);
             userInput = JSON.parse(getInput);
-        switchControl("off")
+        switchControl("off");
         ids('location').value = userInput.location[1];
         ids('worktype').value = userInput.worktype[1];
         ids('people').value = userInput.people[1];
@@ -104,25 +129,25 @@ window.addEventListener( "DOMContentLoaded" , function() {
                 rad[i].setAttribute('checked' , 'checked')
             } else if (rad[i].value == "Low" && userInput.priority[1] == "Low") {
                 rad[i].setAttribute('checked' , 'checked')
-            };
-        };
+            }
+        }
         submit.removeEventListener('click' , storeData);
         var editSubmit = ids('submit');
         editSubmit.addEventListener('click' , validate);
         editSubmit.key = this.key;
-    };
+    }
     
-    // Delete a choosen Job
+    // Delete a chosen Job
     function deletor() {
         var ask = confirm('Are you Sure?');
         if (ask) {
-            localStorage.removeItem(this.key)
+            localStorage.removeItem(this.key);
             window.location.reload();
             alert('Job Deleted!')
         } else {
             alert('Job NOT Deleted')
-        };
-    };
+        }
+    }
     
     // Validate the user input
     function validate(e) {
@@ -142,41 +167,41 @@ window.addEventListener( "DOMContentLoaded" , function() {
         // Work Type Validation
         if (getWorktype.value==='-Maintenance-') {
             var worktypeError = "Please choose a valid Work Type";
-            getWorktype.style.border = '1px solid red'
+            getWorktype.style.border = '1px solid red';
             errorArray.push(worktypeError)
-        };
+        }
         // Location Validation
         if (getLocation.value === '') {
             var locationError = "Please choose a valid Location";
-            getLocation.style.border = '1px solid red'
+            getLocation.style.border = '1px solid red';
             errorArray.push(locationError)
-        };
+        }
         // Date validation
         var checkDate = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
         if (!(checkDate.exec(getFinishby.value))) {
             var finishbyError = "Please choose a valid Finish Date";
-            getFinishby.style.border = '1px solid red'
+            getFinishby.style.border = '1px solid red';
             errorArray.push(finishbyError)
-        };
+        }
         // Notes Validation
         if (getNotes.value === '') {
             var notesError = "Please enter Notes";
-            getNotes.style.border = '1px solid red'
+            getNotes.style.border = '1px solid red';
             errorArray.push(notesError)
-        };
+        }
         // Display Error Message
         if(errorArray.length>0) {
             for(var i=0,len=errorArray.length; i<len; i++) {
-                var info = document.createElement('li')
-                info.innerHTML = errorArray[i]
+                var info = document.createElement('li');
+                info.innerHTML = errorArray[i];
                 errorMessage.appendChild(info)
-            };
+            }
             e.preventDefault();
             return false;
         } else {
             storeData(this.key);
-        };
-    };
+        }
+    }
     
     // Switch between Add Job and Display Jobs
     function switchControl(n) {
@@ -196,8 +221,8 @@ window.addEventListener( "DOMContentLoaded" , function() {
                 break;
             default:
                 return false
-        };
-    };    
+        }
+    }
     // Clear Data
     function clearData() {
         if (localStorage.length===0) {
@@ -208,9 +233,9 @@ window.addEventListener( "DOMContentLoaded" , function() {
                 localStorage.clear();
                 alert("Jobs Cleared!");
                 return false;
-            };
-        };
-    };
+            }
+        }
+    }
 
     // Dynamic Options
     function addCat() {
@@ -224,16 +249,16 @@ window.addEventListener( "DOMContentLoaded" , function() {
                 makeOption.setAttribute("value", text);
                 makeOption.innerHTML = text;
                 selection.appendChild(makeOption);
-        };
+        }
         selectLi.appendChild(selection)
-    };
+    }
 	
     // Default Values
-    var maintenanceTypes = [ "-Maintenance-", "Maintenace: House Keeping" , "Maintenace: Painting", "Maintenace: Electric" , "Maintenace: Plumbing"],
+    var maintenanceTypes = [ "-Maintenance-", "Maintenance:Cleaning" , "Maintenance:Painting", "Maintenance:Electric" , "Maintenance:Plumbing"],
         priority;
-        errorMessage = ids('error')
+        errorMessage = ids('error');
 		
-    addCat ()
+    addCat();
     //Clear and Display Data
     var display = ids("display");
         clear = ids("clear");
