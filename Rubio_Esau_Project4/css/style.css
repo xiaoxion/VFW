@@ -1,0 +1,59 @@
+body {
+	background: #6C8082;
+	width: 320px;
+	height: 548px;
+	font-family: arial;
+	font-size: 12;
+}
+
+h1 {
+    background: #998b65;
+    text-align: center;
+    position: static;
+}
+
+nav {
+    font-family: times;
+    font-weight: bold;
+    font-size: 14;
+    background: #E5A907;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    position: static;
+    margin-bottom: 10px; 
+}
+
+ul {
+    font-family: monospace;
+    background: #E2CD94;
+}
+
+div {
+    background: #c1f2f5;
+    font-family: inherit;
+    padding: 5px;
+}
+
+form {
+    background: #c1f2f5;
+    padding: 10px 10px 10px 10px
+}
+
+legend {
+    margin-left: 10px;
+    font-family: fantasy;
+}
+
+fieldset {
+    background: #E2CD94;
+}
+
+input {
+    background: #fffaee
+}
+
+a {
+    color: #6C8082;
+    padding: 5px;
+    text-align: center;
+}
