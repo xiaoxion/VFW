@@ -29,7 +29,8 @@ ul {
 
 div {
     background: #c1f2f5;
-    font-family: inherit
+    font-family: inherit;
+    text-align: center;
 }
 
 form {
@@ -52,4 +53,6 @@ input {
 
 a {
     color: #6C8082;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
 }
