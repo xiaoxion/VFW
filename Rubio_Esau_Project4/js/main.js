@@ -77,9 +77,9 @@ window.addEventListener( "DOMContentLoaded" , function() {
     function imageGen( parsedWork , makeList) {
         var imageLi = document.createElement('li'),
             imageTag = document.createElement('img'),
-            workName = parsedWork,
-            source = imageTag.setAttribute('src', 'img/'+ workName +'.png');
+            source = imageTag.setAttribute('src', 'img/'+ parsedWork +'.png');
         makeList.appendChild(imageLi);
+        imageLi.appendChild(imageTag);
 
     }
 
@@ -254,7 +254,7 @@ window.addEventListener( "DOMContentLoaded" , function() {
     }
 	
     // Default Values
-    var maintenanceTypes = [ "-Maintenance-", "Maintenance:Cleaning" , "Maintenance:Painting", "Maintenance:Electric" , "Maintenance:Plumbing"],
+    var maintenanceTypes = [ "--Maintenance--", "Cleaning" , "Painting", "Electric" , "Plumbing"],
         priority;
         errorMessage = ids('error');
 		
