@@ -8,7 +8,7 @@
 var json = {
     "job1":{
         "location": ["Location:" , "Tampa"],
-        "worktype": ["Work Type:" , "Maintenance:Painting"],
+        "worktype": ["Work Type:" , "Cleaning"],
         "priority": ["Priority:" , "High"],
         "people": ["Workers Sent:" , "2"],
         "finishby": ["Finish By:" , "2013-01-12"],
@@ -16,7 +16,7 @@ var json = {
     },
     "job2":{
         "location": ["Location:" , "Atlanta"],
-        "worktype": ["Work Type:" , "Maintenance:Electric"],
+        "worktype": ["Work Type:" , "Electric"],
         "priority": ["Priority:" , "High"],
         "people": ["Workers Sent:" , "3"],
         "finishby": ["Finish By:" , "2013-02-12"],

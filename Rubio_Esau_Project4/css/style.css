@@ -1,51 +1,56 @@
 body {
-	background: #6C8082;
+	background: #206999;
 	width: 320px;
 	height: 548px;
-	font-family: arial;
-	font-size: 12;
+	font-family: arial, monospace;
+	font-size: 12px;
+    color: white;
 }
 
 h1 {
-    background: #998b65;
+    background: #E5A907;
     text-align: center;
     position: static;
+    color: #206999;
 }
 
 nav {
-    font-family: times;
+    font-family: arial , fantasy;
     font-weight: bold;
     font-size: 14px;
-    background: #E5A907;
-    padding: 10px 0px 10px 0px;
+    background: #998b65;
+    padding: 10px 0 10px 0;
     text-align: center;
     position: static;
     margin-bottom: 10px; 
 }
 
 ul {
-    font-family: monospace;
-    background: #E2CD94;
+    font-family: arial , monospace;
+    background: #206999;
+    list-style-type: none;
 }
 
 div {
-    background: #c1f2f5;
+    background: #998b65;
     font-family: inherit;
     padding: 5px;
 }
 
 form {
-    background: #c1f2f5;
-    padding: 10px 10px 10px 10px
+    background: #998b65;
+    padding: 10px 10px 10px 10px;
 }
 
 legend {
     margin-left: 10px;
-    font-family: fantasy;
+    font-family: arial , monospace;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 fieldset {
-    background: #E2CD94;
+    background: #206999;
 }
 
 input {
@@ -53,7 +58,8 @@ input {
 }
 
 a {
-    color: #6C8082;
-    padding: 5px;
+    color: white;
+    font-weight: bolder;
+    padding-right: 5px;
     text-align: center;
 }
